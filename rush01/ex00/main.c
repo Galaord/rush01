@@ -59,12 +59,11 @@ void	print_board(int board[4][4])
 
 void	*ft_resetboard(void *ptr, int n)
 {
-	int	i;
-
-	i = 0;
+	int i = 0;
+	unsigned char *p = (unsigned char *)ptr;
 	while (i < n)
 	{
-		*(unsigned char *)(ptr + i) = 0;
+		p[i] = 0;
 		i++;
 	}
 	return (ptr);
