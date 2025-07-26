@@ -50,3 +50,12 @@ int check_col(int col, int board[4][4], int clues[16])
 	}
 	return (1);
 }
+
+int	check_clues_current(int row, int col, int board[4][4], int clues[16])
+{
+	if(!check_row(row, board, clues))
+		return (0);
+	if (!check_col(col, board, clues))
+		return (0);
+	return (1);
+}

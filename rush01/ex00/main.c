@@ -1,5 +1,8 @@
 #include <unistd.h>
 
+int	acceptable_input(char *arg, int clues[16]);
+int	solvable(int row, int col, int board[4][4], int clues[16]);
+
 void	ft_putchar(char c)
 {
     write(1, &c, 1);
@@ -31,7 +34,7 @@ void	ft_putstr(char *str)
 	}
 }
 
-void	print_board(int **board)
+void	print_board(int board[4][4])
 {
 	int	i;
 	int	j;
@@ -42,7 +45,7 @@ void	print_board(int **board)
 		j = 0;
 		while (j < 4)
 		{
-			ft_putnbr(board[i][j])
+			ft_putnbr(board[i][j]);
 			if (j < 3)
 			{
 				ft_putchar (' ');
@@ -67,7 +70,7 @@ void	*ft_resetboard(void *ptr, int n)
 	return (ptr);
 }
 
-int	main(int argc, char **agrv)
+int	main(int argc, char **argv)
 {
 	int board[4][4];
 	int clues[16];
@@ -77,7 +80,12 @@ int	main(int argc, char **agrv)
 		write(1, "Error\n", 6);
 		return (1);
 	}
-	ft_resetboard(board, sizeof(int)*4*4);
+	if (!acceptable_input(argv[1], clues))
+	{
+		write(1, "Error\n", 6);
+		return (1);
+	}
+	ft_resetboard(board, sizeof(board));
 	if (!solvable(0, 0, board, clues))
 		write(1, "Error\n", 6);
 	else
